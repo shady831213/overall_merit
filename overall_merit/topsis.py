@@ -1,9 +1,3 @@
-'''
-3 某儿童医院2004～2008年7项指标的实际值，比较该医院这5年的医疗质量 。
-
-
-'''
-
 import numpy as np
 from numpy.matlib import repmat
 
