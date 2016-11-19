@@ -5,11 +5,12 @@ def normalization(a):
     #sqrt of sum of **2 by col
     v = np.sum(a, axis=0)
     return (a / repmat(v,a.shape[0], 1))
-
 #generate judge array
-def genJudgeArray(vector):
-    a = repmat(vector, vector.size, 1)
-    return a/a.T
+#reshape to square array
+def genJudgeArray(vector):    
+    #a = repmat(vector, vector.size, 1)    
+    #return a/a.T    
+    return vector.reshape((np.sqrt(vector.size),np.sqrt(vector.size)))
 
 #get eigvector and eigvelue
 def getEig(a):
@@ -103,7 +104,8 @@ class ahpLayer:
     #         self._dLayer.build()
 
     def process(self):
-        my_result = np.zeros(self._data.shape)
+        my_result = np.zeros((self._data.shape[0], np.sqrt(self._data.shape[1])))
+        #my_result = np.zeros(self._data.shape)
         for i in range(self._data.shape[0]):
             cell = ahpCell('item%0d' % (i))
             cell.set_judgeVector(np.asarray(self._data[i, :]))
